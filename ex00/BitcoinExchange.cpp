@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 15:24:41 by tkong             #+#    #+#             */
-/*   Updated: 2023/07/31 17:05:46 by tkong            ###   ########.fr       */
+/*   Updated: 2023/08/01 13:02:40 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ BitcoinExchange::BitcoinExchange(const std::string &csv) {
 BitcoinExchange::~BitcoinExchange() {}
 
 bool BitcoinExchange::check_flag(long before, long after, long afafter, long inv_d, long inv_a) {
-	if (before > 2 || after != 1 || afafter > 1 || inv_d > 0 || inv_a > 0) {
+	if (before != 2 || after != 1 || afafter > 1 || inv_d > 0 || inv_a > 0) {
 		std::cerr << "Error: Invalid format" << std::endl;
 		return false;
 	}
@@ -56,7 +56,10 @@ bool BitcoinExchange::check_flag(long before, long after, long afafter, long inv
 bool BitcoinExchange::check_date(long y, long m, long d) {
 	static const long day_limit[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	if ((y<1923 || y>2023) || (m<1 || m>12) || (d<1 || d>day_limit[m]+(y%4==0 && m==2 ? 1 : 0))) {
-		std::cerr << "Error: Invalid date" << std::endl;
+		std::cerr << "Error: Invalid date => "
+			<< (y<1000 ? "0" : "") << (y<100 ? "0" : "") << (y<10 ? "0" : "") << y << "-"
+			<< (m<10 ? "0" : "") << m << "-"
+			<< (d<10 ? "0" : "") << d << std::endl;
 		return false;
 	}
 	return true;
@@ -120,7 +123,10 @@ void BitcoinExchange::run(const std::string &input) {
 			}
 			std::map<long, double>::iterator it = db.upper_bound(date);
 			--it;
-			std::cout << y << '-' << m << '-' << d << " => " << amount << " = " << (0) << std::endl;
+			std::cout << (y<1000 ? "0" : "") << (y<100 ? "0" : "") << (y<10 ? "0" : "") << y << '-'
+				<< (m<10 ? "0" : "") << m << '-'
+				<< (d<10 ? "0" : "") << d << " => "
+				<< amount << " = " << (it->second * amount) << std::endl;
 		}
 	}
 	fs.close();
