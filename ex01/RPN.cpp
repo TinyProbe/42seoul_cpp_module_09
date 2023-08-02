@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 15:27:52 by tkong             #+#    #+#             */
-/*   Updated: 2023/08/01 19:38:36 by tkong            ###   ########.fr       */
+/*   Updated: 2023/08/02 09:24:29 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ void RPN::run(int ac, char **av) {
 			throw std::invalid_argument("Invalid format");
 		}
 	}
-	if (stk.size() != 1) { throw std::runtime_error("Invalid formula"); }
+	if (stk.size() != 1) { throw std::invalid_argument("Invalid formula"); }
 	std::cout << stk.top() << std::endl;
 }

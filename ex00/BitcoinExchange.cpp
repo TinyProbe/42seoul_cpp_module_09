@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 15:24:41 by tkong             #+#    #+#             */
-/*   Updated: 2023/08/01 13:02:40 by tkong            ###   ########.fr       */
+/*   Updated: 2023/08/02 09:19:58 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,7 @@ void BitcoinExchange::run(const std::string &input) {
 				std::cerr << "Error: No data for reference" << std::endl;
 				continue;
 			}
-			std::map<long, double>::iterator it = db.upper_bound(date);
-			--it;
+			std::map<long, double>::iterator it = --db.upper_bound(date);
 			std::cout << (y<1000 ? "0" : "") << (y<100 ? "0" : "") << (y<10 ? "0" : "") << y << '-'
 				<< (m<10 ? "0" : "") << m << '-'
 				<< (d<10 ? "0" : "") << d << " => "

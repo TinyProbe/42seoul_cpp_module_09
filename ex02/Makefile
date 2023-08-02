@@ -6,15 +6,16 @@
 #    By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/30 15:28:51 by tkong             #+#    #+#              #
-#    Updated: 2023/07/30 16:39:39 by tkong            ###   ########.fr        #
+#    Updated: 2023/08/02 09:07:11 by tkong            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = program
+NAME = PmergeMe
 CPL = c++
 OPT = -Wall -Wextra -Werror -std=c++98 -O2 -o $(NAME)
-INC = 
-SRC = main.cpp
+INC = PmergeMe.hpp
+SRC = PmergeMe.cpp
+	  main.cpp
 
 $(NAME): $(INC) $(SRC) Makefile
 	$(CPL) $(OPT) $(SRC)
