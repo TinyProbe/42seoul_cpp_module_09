@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 15:28:53 by tkong             #+#    #+#             */
-/*   Updated: 2023/08/04 12:40:36 by tkong            ###   ########.fr       */
+/*   Updated: 2023/08/04 13:25:01 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,9 @@ void PmergeMe::run(int ac, char **av) {
 			args.back() = (args.back()<<1)+(args.back()<<3)+(arg[i]-'0');
 		} else if (std::isspace(arg[i])) {
 			ing = false;
+			if (args.size()!=0 && args.back()==0) {
+				throw std::invalid_argument("Invalid argument");
+			}
 		} else {
 			throw std::invalid_argument("Invalid argument");
 		}
